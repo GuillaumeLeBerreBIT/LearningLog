@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\Guillaume\OneDrive\Documenten\SF\learning_log\ll_env
+set VIRTUAL_ENV=C:\Users\uniro\OneDrive\Documenten\SF\Web Development - Django\learning_log\ll_env
 
 if not defined PROMPT set PROMPT=$P$G
 

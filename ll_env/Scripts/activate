@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Guillaume\OneDrive\Documenten\SF\learning_log\ll_env"
+VIRTUAL_ENV="C:\Users\uniro\OneDrive\Documenten\SF\Web Development - Django\learning_log\ll_env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
