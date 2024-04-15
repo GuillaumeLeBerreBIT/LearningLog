@@ -24,7 +24,7 @@ SECRET_KEY = 'j%-cdw0c$dwag%cb5pv36g$_w)%jg*qa2_eszvrrly0=9pp6ab'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # Want to allow vercel to deploy. 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1','.vercel.app']
 
 
 # Application definition
