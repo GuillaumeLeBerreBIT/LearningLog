@@ -14,5 +14,5 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'learning_log.settings')
 
 application = get_wsgi_application()
-
+# Bridge the connection and connect it to our virtual app
 app = application
