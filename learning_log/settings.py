@@ -15,11 +15,18 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+import environ 
+
+# Initialise our environment variables. 
+env = environ.Env()
+
+environ.Env.read_env()
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'j%-cdw0c$dwag%cb5pv36g$_w)%jg*qa2_eszvrrly0=9pp6ab'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -79,12 +86,31 @@ WSGI_APPLICATION = 'learning_log.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+}
+
+# Postgres Local Database
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'learninglogdb',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres_password',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+'''
+# Postgres Local Database
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.parse(env('DATABASE_URL'))
 }
 
 # Password validation
