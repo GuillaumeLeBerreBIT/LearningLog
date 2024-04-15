@@ -15,12 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-import environ
-
-env = environ.Env()
-
-environ.Env.read_env()
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -29,8 +23,8 @@ SECRET_KEY = 'j%-cdw0c$dwag%cb5pv36g$_w)%jg*qa2_eszvrrly0=9pp6ab'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
+# Want to allow vercel to deploy. 
+ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition
@@ -92,15 +86,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-'''
-# Render PostgreSQL database (live)
-import dj_database_url
 
-DATABASES = {
-    'default': dj_database_url.parse(env('DATABASE_URL'))
-    
-}
-'''
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
