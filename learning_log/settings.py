@@ -29,9 +29,9 @@ environ.Env.read_env()
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 # Want to allow vercel to deploy. 
-ALLOWED_HOSTS = ['127.0.0.1','.vercel.app'] # Vercel does not support SQLite DB so will not work. 
+ALLOWED_HOSTS = ['*'] # Local domain: '127.0.0.1'
 
 
 # Application definition
