@@ -30,9 +30,8 @@ SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-# Want to allow vercel to deploy. 
-ALLOWED_HOSTS = ['*'] # Local domain: '127.0.0.1'
 
+ALLOWED_HOSTS = ['*'] # Local domain: '127.0.0.1'
 
 # Application definition
 
@@ -106,7 +105,7 @@ DATABASES = {
     }
 }
 '''
-# Postgres Local Database
+# Postgres Render Database
 import dj_database_url
 
 DATABASES = {
