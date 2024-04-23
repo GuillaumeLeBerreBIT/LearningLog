@@ -16,23 +16,48 @@ def index(request):
     """The home page for Learning Log."""
     return render(request, 'learning_logs/index.html')
 
-# Adding a decorator to see if the user is logged in or not. 
-@login_required
+
 def topics(request):
-    """The page the view all the topics"""
-    topics = Topic.objects.filter(owner=request.user).order_by('date_added')
-    context = {'topics': topics}
+    """
+    The page the view all the topics of the current user, 
+    and all the public topics belonging to other users
+    """
+    # If the user is logged in need to show all the Topics including the owner Topics and Public Topics.
+    if request.user.is_authenticated:
+         
+        topics = Topic.objects.filter(owner=request.user).order_by('date_added')
+        # Wrapping the querry in parentheses allows to break up the querry in multiple lines. 
+        public_topics = (Topic.objects.filter(public=True)
+                         .exclude(owner=request.user)
+                         .order_by('date_added'))
+    # If the user is not authenticated can see the public querries. 
+    else:
+        topics = None
+        public_topics = Topic.objects.filter(public=True).order_by('date_added')
+        
+    context = {'topics': topics, 'public_topics': public_topics}
     return render(request, 'learning_logs/topics.html', context)
 
-@login_required
 def topic(request, topic_id):
     """Show a single topic and all its entries."""
-    topic = get_object_or_404(Topic, id=topic_id)
+    #topic = get_object_or_404(Topic, id=topic_id)
     # Make sure the Topic belongs to the current User
-    check_topic_owner(request, topic)
+    #check_topic_owner(request, topic)
+    
+    # Get the topic corresponding with the Topic request. 
+    topic = Topic.objects.get(id=topic_id)
+    
+    # Only want to make the owner to be able to edit or delete the Post
+    is_owner = False
+    if topic.owner == request.user:
+        is_owner = True
+    # If the topic belongs to someone else and is not public then show error page. 
+    if topic.owner != request.user and not topic.public:
+        raise Http404
     
     entries = topic.entry_set.order_by('-date_added')
-    context = {'topic': topic, 'entries': entries}
+    context = {'topic': topic, 'entries': entries, 'is_owner': is_owner}
+    
     return render(request, 'learning_logs/topic.html', context)
 
 @login_required
