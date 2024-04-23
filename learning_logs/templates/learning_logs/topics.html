@@ -8,25 +8,29 @@
     
     {% if user.is_authenticated %}
     <h5>My Topics:</h5>
-    <ul>
-        {% for topic in topics %}
-            <li><h3>
-                <a href="{% url 'learning_logs:topic' topic.id %}">{{topic}}</a>
-            </h3></li>
-        {% empty %}
-            <li><h3>No topics have been added yet.</h3></li>
-        {% endfor %}
-    </ul>
+        <ul class="list-group border-bottom pb-4 mb-4 pt-2">
+            {% for topic in topics %}
+                <li class="list-group-item">
+                    <h3>
+                        <a href="{% url 'learning_logs:topic' topic.id %}">{{topic}}</a>
+                    </h3>    
+                </li>
+            {% empty %}
+                <li class="list-group-item"><h3>No topics have been added yet.</h3></li>
+            {% endfor %}
+        </ul>
     {% endif %}
     
     <h5>Public Topics:</h5>
-    <ul>
+    <ul class="list-group border-bottom pb-4 pt-2 mb-4">
         {% for topic in public_topics %}
-            <li><h3>
-                <a href="{% url 'learning_logs:topic' topic.id %}">{{topic}}</a>
-            </h3></li>
+            <li class="list-group-item">
+                <h3>
+                    <a href="{% url 'learning_logs:topic' topic.id %}">{{topic}}</a>
+                </h3>    
+            </li>
         {% empty %}
-            <li><h3>No user have posted any public topics yet.</h3></li>
+            <li class="list-group-item"><h3>No user have posted any public topics yet.</h3></li>
         {% endfor %}
     </ul>
 
